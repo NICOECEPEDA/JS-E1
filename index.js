@@ -1,4 +1,4 @@
-const h2 = document.getElementById("nombre");
+const h1 = document.getElementById("nombre");
 const h4 = document.getElementById("precio");
 const input = document.querySelector("input");
 const btnEnviar = document.getElementById("enviar");
