@@ -1,4 +1,9 @@
-let pizzas = [
+const h2 = document.getElementById("nombre");
+const h4 = document.getElementById("precio");
+const input = document.querySelector("input");
+const btnEnviar = document.getElementById("enviar");
+const contenedor = document.getElementById("contenedor");
+const pizzas = [
     {
         id: 1,
         nombre: 'La Muza',
@@ -36,22 +41,70 @@ let pizzas = [
         precio: 350
     },
 ]
+btnEnviar.addEventListener("click", enviarId);
 
-for(let i = 0; i < pizzas.length; i++) {
-    if(i % 2 === 0) {
-        console.log (`estas pizzas tienen id: ${pizzas[i].id}`)
-    }
+function enviarId(e) {
+  e.preventDefault();
+  const pizzaId = parseInt(input.value);
+  if (!pizzaId) {
+    mostrarAlerta("Elegí una pizza del menu (Tenemos hasta 6)");
+    reset();
+    return; 
+  }
+  
+  if (pizzaId <= 0 || pizzaId > pizzas.length) {
+    mostrarAlerta("Elegí una pizza del menu (Tenemos hasta 6)");
+    reset();
+    return; 
+  }
+ 
+  const resultado = pizzas.find((pizza) => pizza.id === pizzaId);
+  renderPizza(resultado); 
 }
 
-let ValorPizzas = pizzas.filter(pizza => pizza.precio > 600 ?
-     console.log(`La pizza ${pizza.nombre} esta mas de $600`): 
-     console.log(`La pizza ${pizza.nombre} cuesta menos de $600`))
-console.log(ValorPizzas) 
+const renderPizza = (pizza) => {
+  const { nombre, precio } = pizza; 
+  h2.innerHTML = `<span class= "text-small">Nombre: </span>${nombre}`;
+  h4.innerHTML = `<span class= "text-small">Precio: </span>${precio}`;
+};
 
-let nombreYprecio = pizzas.map(pizza => console.log(`La pizza ${pizza.nombre} tiene el precio de $${pizza.precio}`))
 
-let nombreYingredientes = pizzas.map(function (objeto) {
-    let ingredientes = objeto.ingredientes
-    console.log(`La pizza ${objeto.nombre} tiene los ingredientes: ${ingredientes}`)
+const mostrarAlerta = (mensaje) => {
+  const existeAlerta = document.querySelector(".m-auto");
+  if (!existeAlerta) {
+    const divAlert = document.createElement("div");
+    divAlert.classList.add("text-center", "m-auto");
+    divAlert.innerHTML = `
+    <p class="alert">${mensaje}</p>
+    `;
+    contenedor.appendChild(divAlert);
+    setTimeout(() => {
+      divAlert.remove();
+    }, 3000);
+  }
+};
 
-}) 
+const reset = () => {
+  h2.innerHTML = "";
+  h4.innerHTML = "";
+};
+
+
+// for(let i = 0; i < pizzas.length; i++) {
+//     if(i % 2 === 0) {
+//         console.log (`estas pizzas tienen id: ${pizzas[i].id}`)
+//     }
+// }
+
+// let ValorPizzas = pizzas.filter(pizza => pizza.precio > 600 ?
+//      console.log(`La pizza ${pizza.nombre} esta mas de $600`): 
+//      console.log(`La pizza ${pizza.nombre} cuesta menos de $600`))
+// console.log(ValorPizzas) 
+
+// let nombreYprecio = pizzas.map(pizza => console.log(`La pizza ${pizza.nombre} tiene el precio de $${pizza.precio}`))
+
+// let nombreYingredientes = pizzas.map(function (objeto) {
+//     let ingredientes = objeto.ingredientes
+//     console.log(`La pizza ${objeto.nombre} tiene los ingredientes: ${ingredientes}`)
+
+// }) 
