@@ -1,17 +1,20 @@
 body {
-    background: black;
+    background: linear-gradient(90deg, #72C6EF 0%, #004E8F 100%);
+    font-family: 'Fjalla One', sans-serif;
+font-family: 'Glory', sans-serif;
 }
 
 h1 {
-    color: yellow;
+    color:aliceblue;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-align: center;
     margin-top: 20%;
 }
 
 .text {
-    color: yellow;
+    color: aliceblue;
     font-size: 15px;
+    font-family: glory;
 }
 
 .alert {
@@ -38,7 +41,7 @@ h1 {
     font-size: 16px;
     border: none;
     outline: 0px;
-    background:yellow;
+    background: #F4C54C;
     color: black;
     border-radius: 10px;
     cursor: pointer;
